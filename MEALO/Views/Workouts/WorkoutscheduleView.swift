@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutReminderView: View {
+struct WorkoutscheduleView: View {
     var body: some View {
         NavigationStack {
             Text("Тут будуть нагадування")
@@ -18,5 +18,5 @@ struct WorkoutReminderView: View {
 }
 
 #Preview {
-    WorkoutReminderView()
+    WorkoutscheduleView()
 }
