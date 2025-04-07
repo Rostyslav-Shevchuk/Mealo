@@ -13,46 +13,58 @@ struct LoginView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20){
-                Text("Привіт")
-                    .font(.system(size: 64, weight: .bold, design: .monospaced))
+            VStack(spacing: 180){
                 
-                Text("Увійди у свій акаунт")
-                    .font(.system(size: 18, weight: .regular, design: .monospaced))
-                
-                HStack(spacing: 10) {
-                    Image("email")
-                        .foregroundColor(.gray)
-                        .frame(width: 24, height: 24)
-                    TextField("Email", text: $viewModel.email)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .foregroundColor(.gray)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .font(.system(size: 15, weight: .regular, design: .monospaced))
+                VStack(spacing: 100){
+                    //Text "Hello, LogIN"
+                    VStack(alignment: .center, spacing: 20){
+                        Text("Привіт")
+                            .font(.system(size: 64, weight: .bold, design: .monospaced))
+                        
+                        Text("Увійди у свій акаунт")
+                            .font(.system(size: 18, weight: .regular, design: .monospaced))
+                    }
+                    
+                    VStack(alignment: .center, spacing: 40){
+                        //Input Email
+                        HStack(spacing: 10){
+                            Image("email")
+                                .foregroundColor(.gray)
+                                .frame(width: 24, height: 24)
+                            TextField("Email", text: $viewModel.email)
+                                .textFieldStyle(PlainTextFieldStyle())
+                                .foregroundColor(.gray)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                                .font(.system(size: 15, weight: .regular, design: .monospaced))
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 0, y: 8)
+                        .frame(width: 300, height: 50)
+                        
+                        //Input password
+                        HStack(spacing: 10) {
+                            Image("password")
+                                .foregroundColor(.gray)
+                                .frame(width: 24, height: 24)
+                            SecureField("Пароль", text: $viewModel.password)
+                                .textFieldStyle(PlainTextFieldStyle())
+                                .foregroundColor(.gray)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
+                                .font(.system(size: 15, weight: .regular, design: .monospaced))
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(40)
+                        .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 0, y: 8)
+                        .frame(width: 300, height: 50)
+                    }
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(40)
-                .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 0, y: 8)
-                .frame(width: 300, height: 50)
-                
-                HStack(spacing: 10) {
-                    Image("password")
-                        .foregroundColor(.gray)
-                        .frame(width: 24, height: 24)
-                    SecureField("Пароль", text: $viewModel.password)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .foregroundColor(.gray)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                        .font(.system(size: 15, weight: .regular, design: .monospaced))
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(40)
-                .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 0, y: 8)
-                .frame(width: 300, height: 50)
+                .frame(maxHeight: .infinity, alignment: .top)
+                .padding(.top, 100)
                 
                 if let error = viewModel.errorMessage {
                     Text(error)
@@ -60,40 +72,47 @@ struct LoginView: View {
                         .font(.system(size: 15))
                 }
                 
-                HStack(spacing: 10){
-                    Text("Увійти")
-                        .font(.system(size: 25, weight: .bold, design: .monospaced))
-                    
-                    Button(action: {
-                        viewModel.login()
-                    }) {
-                        Image(systemName: "arrow.right")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                    }
-                    .frame(width: 100, height: 50)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.green, Color.yellow]),
-                            startPoint: .leading,
-                            endPoint: .trailing
+                VStack{
+                    //Button LogIN
+                    HStack(spacing: 10){
+                        Text("Увійти")
+                            .font(.system(size: 25, weight: .bold, design: .monospaced))
+                        
+                        Button(action: {
+                            viewModel.login()
+                        }) {
+                            Image(systemName: "arrow.right")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 100, height: 50)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.green, Color.yellow]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
                         )
-                    )
-                    .cornerRadius(25)
-                    .disabled(viewModel.isLoading)
-                }
-                
-                NavigationLink {
-                    RegisterView()
-                } label: {
-                    HStack {
-                        Text("Немаєте акаунта?")
-                            .foregroundColor(Color.black)
-                        Text("Створити")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.black)
-                            .underline(true)
+                        .cornerRadius(25)
+                        .disabled(viewModel.isLoading)
                     }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.trailing, 30)
+                    
+                    NavigationLink {
+                        RegisterView()
+                    } label: {
+                        HStack {
+                            Text("Немаєте акаунта?")
+                                .foregroundColor(Color.black)
+                            Text("Створити")
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.black)
+                                .underline(true)
+                        }
+                    }
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    .padding(.bottom, 20)
                 }
             }
             .padding()
