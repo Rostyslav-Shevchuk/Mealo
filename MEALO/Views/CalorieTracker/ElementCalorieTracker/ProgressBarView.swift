@@ -40,7 +40,7 @@ struct ProgressBarView: View {
                 .foregroundColor(.white)
                 .frame(width: 100, alignment: .leading) // Фіксована ширина
         }
-        .padding(5)
+        .padding(10)
         .background(Color.backgroundB)
         .frame(width: 100) // Фіксована ширина для всього VStack
         .onAppear {
