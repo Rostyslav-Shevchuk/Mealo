@@ -52,13 +52,14 @@ struct CalorieTrackerView: View {
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.backgroundB)
                         .cornerRadius(10)
                 }
-                .opacity(isVisible ? 1 : 0)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 20)
                 
                 // Круговой прогрес-бар із фоном
-                VStack(spacing: 15) {
+                VStack(spacing: 5) {
                     CalorieProgressBarView(
                         consumedCalories: consumedCalories,
                         remainingCalories: remainingCalories,
@@ -84,10 +85,9 @@ struct CalorieTrackerView: View {
                         )
                     }
                 }
-                .padding()
-                .background(Color(red: 0.2, green: 0.8, blue: 0.6))
+                .padding(15)
+                .background(Color.backgroundG)
                 .cornerRadius(15)
-                .opacity(isVisible ? 1 : 0)
                 
                 // Список категорій (Сніданок, Обід, Вечеря, Перекус)
                 List {

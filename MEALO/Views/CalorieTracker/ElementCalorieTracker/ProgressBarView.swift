@@ -16,33 +16,34 @@ struct ProgressBarView: View {
     @State private var animatedValue: CGFloat = 0
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center, spacing: 5) {
             Text(title)
                 .font(.caption)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
-                .frame(alignment: .center)
+
             
             ZStack(alignment: .leading) {
                 // Фоновий прогрес-бар
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.progressY)
-                    .frame(width: 100, height: 10) // Фіксована ширина
                 
                 // Активний прогрес-бар
                 RoundedRectangle(cornerRadius: 5)
                     .fill(Color.progressR)
                     .frame(width: min(animatedValue / maxValue * 100, 100), height: 10)
             }
-            .frame(width: 100) // Фіксована ширина для ZStack
             
             Text("\(Int(animatedValue))/\(Int(maxValue))")
                 .font(.caption)
+                .fontWeight(.bold)
                 .foregroundColor(.white)
-                .frame(width: 100, alignment: .leading) // Фіксована ширина
+                .multilineTextAlignment(.center)
         }
         .padding(10)
         .background(Color.backgroundB)
-        .frame(width: 100) // Фіксована ширина для всього VStack
+        .frame(width: 100, height: 50) // Фіксована ширина для всього VStack
+        .cornerRadius(8)
         .onAppear {
             withAnimation(.easeInOut(duration: 1.0)) {
                 animatedValue = value

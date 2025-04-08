@@ -19,7 +19,7 @@ struct CalorieProgressBarView: View {
     @State private var animatedBurned: CGFloat = 0
     
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 30) {
             // Скільки з'їдено калорій
             VStack {
                 Text("\(Int(animatedConsumed))")
@@ -34,15 +34,15 @@ struct CalorieProgressBarView: View {
             ZStack {
                 // Фоновий півкруг (синій)
                 Circle()
-                    .trim(from: 0.0, to: 0.5)
-                    .stroke(Color.blue.opacity(0.3), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-                    .rotationEffect(.degrees(180))
+                    .trim(from: 0.0, to: 0.7)
+                    .stroke(Color.progressY, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                    .rotationEffect(.degrees(145))
                     .frame(width: 138, height: 138)
                 // Жовтий прогрес-бар (півкруг) з анімацією
                 Circle()
-                    .trim(from: 0.0, to: progress * 0.5)
-                    .stroke(Color.yellow, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-                    .rotationEffect(.degrees(180))
+                    .trim(from: 0.0, to: progress * 0.7)
+                    .stroke(Color.progressR, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                    .rotationEffect(.degrees(145))
                     .frame(width: 138, height: 138)
                 
                 // Текст всередині кола

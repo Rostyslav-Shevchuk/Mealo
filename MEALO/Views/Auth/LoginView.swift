@@ -13,7 +13,7 @@ struct LoginView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 180){
+            VStack(spacing: 170){
                 
                 VStack(spacing: 100){
                     //Text "Hello, LogIN"
@@ -61,16 +61,16 @@ struct LoginView: View {
                         .cornerRadius(40)
                         .shadow(color: Color.gray.opacity(0.5), radius: 8, x: 0, y: 8)
                         .frame(width: 300, height: 50)
+                        
+                        if let error = viewModel.errorMessage {
+                            Text(error)
+                                .foregroundColor(.red)
+                                .font(.system(size: 15))
+                        }
                     }
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.top, 100)
-                
-                if let error = viewModel.errorMessage {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .font(.system(size: 15))
-                }
                 
                 VStack{
                     //Button LogIN
